@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Gross Profit Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 500px;
+      margin: 40px auto;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+    }
+    .field {
+      margin: 12px 0;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 4px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      margin: 5px;
+      padding: 8px 14px;
+      border: none;
+      border-radius: 5px;
+      background: #007bff;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    .result {
+      margin-top: 20px;
+      padding: 12px;
+      background: #f5f5f5;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Gross Profit Margin Calculator</h2>
+
+  <div class="field">
+    <label>Cost ($):</label>
+    <input type="number" id="cost" step="0.01">
+  </div>
+
+  <div class="field">
+    <label>Sell Price ($):</label>
+    <input type="number" id="sell" step="0.01">
+  </div>
+
+  <div class="field">
+    <label>Gross Profit Margin (%):</label><br>
+    <button onclick="setGP(53)">53%</button>
+    <button onclick="setGP(58)">58%</button>
+    <button onclick="setGP(60)">60%</button>
+    <input type="number" id="gp" placeholder="Custom %" step="0.01">
+  </div>
+
+  <div class="field">
+    <button onclick="calcSell()">Calculate Sell Price</button>
+    <button onclick="calcCost()">Calculate Cost</button>
+    <button onclick="calcGP()">Calculate GP%</button>
+  </div>
+
+  <div class="result" id="result"></div>
+
+  <script>
+    function setGP(val) {
+      document.getElementById("gp").value = val;
+    }
+
+    function calcSell() {
+      let cost = parseFloat(document.getElementById("cost").value);
+      let gp = parseFloat(document.getElementById("gp").value) / 100;
+
+      if (isNaN(cost) || isNaN(gp)) {
+        document.getElementById("result").innerHTML = "Enter cost and GP%";
+        return;
+      }
+
+      let sellPrice = cost / (1 - gp);
+      document.getElementById("result").innerHTML =
+        `Sell Price: $${sellPrice.toFixed(2)}`;
+      document.getElementById("sell").value = sellPrice.toFixed(2);
+    }
+
+    function calcCost() {
+      let sell = parseFloat(document.getElementById("sell").value);
+      let gp = parseFloat(document.getElementById("gp").value) / 100;
+
+      if (isNaN(sell) || isNaN(gp)) {
+        document.getElementById("result").innerHTML = "Enter sell price and GP%";
+        return;
+      }
+
+      let cost = sell * (1 - gp);
+      document.getElementById("result").innerHTML =
+        `Cost: $${cost.toFixed(2)}`;
+      document.getElementById("cost").value = cost.toFixed(2);
+    }
+
+    function calcGP() {
+      let cost = parseFloat(document.getElementById("cost").value);
+      let sell = parseFloat(document.getElementById("sell").value);
+
+      if (isNaN(cost) || isNaN(sell) || sell <= 0) {
+        document.getElementById("result").innerHTML = "Enter cost and sell price";
+        return;
+      }
+
+      let gp = ((sell - cost) / sell) * 100;
+      document.getElementById("result").innerHTML =
+        `Gross Profit Margin: ${gp.toFixed(2)}%`;
+      document.getElementById("gp").value = gp.toFixed(2);
+    }
+  </script>
+</body>
+</html>
