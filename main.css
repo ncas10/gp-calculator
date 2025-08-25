@@ -4,28 +4,42 @@ body {
   margin: 40px auto;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  background-color: #121212;
+  color: #f5f5f5;
+  box-shadow: 0 0 10px rgba(255,255,255,0.1);
 }
+
 h2 {
   text-align: center;
 }
+
 .field {
   margin: 12px 0;
 }
+
+.calcfield {
+  margin: 12px 0;
+}
+
 input {
   width: 100%;
   padding: 8px;
   margin-top: 4px;
-  border: 1px solid #ccc;
+  border: 1px solid #333;
   border-radius: 5px;
+  background-color: #1e1e1e;
+  color: #f5f5f5;
 }
 
 #gp {
-  width: 60px;
+  width: 75px;
   padding: 8px;
   margin-top: 4px;
-  border: 1px solid #ccc;
+  margin-left: 20px;
+  border: 1px solid #333;
   border-radius: 5px;
+  background-color: #1e1e1e;
+  color: #f5f5f5;
 }
 
 button {
@@ -33,26 +47,35 @@ button {
   padding: 8px 14px;
   border: none;
   border-radius: 5px;
-  background: #007bff;
-  color: white;
+  background-color: #333;
+  color: #f5f5f5;
   cursor: pointer;
 }
+
 button:hover {
-  background: #0056b3;
+  background-color: #555;
 }
+
 .result {
   margin-top: 20px;
   padding: 12px;
-  background: #f5f5f5;
+  background-color: #1e1e1e;
+  color: #f5f5f5;
   border-radius: 5px;
+  border: 1px solid #333;
 }
 
+.calc-buttons button {
+  width: 30%;
+}
+
+/* GP buttons + custom input inline */
 .gp-buttons {
   display: flex;
-  gap: 8px;       /* space between items */
+  gap: 8px;
   margin-top: 6px;
 }
 
 .gp-buttons input {
-  width: 40px;    /* smaller input so it fits inline */
+  width: 80px;
 }
